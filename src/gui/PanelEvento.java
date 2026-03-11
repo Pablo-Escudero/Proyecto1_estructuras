@@ -73,6 +73,11 @@ public class PanelEvento extends JPanel {
         String nombre = JOptionPane.showInputDialog(this, "Nombre del evento:");
         if (nombre == null || nombre.isEmpty()) return;
 
+        if (agencia.existeEventoNombre(nombre)) {
+            JOptionPane.showMessageDialog(this, "Ya existe un evento con ese nombre.");
+            return;
+        }
+
         String fecha = JOptionPane.showInputDialog(this, "Fecha del evento:");
         if (fecha == null || fecha.isEmpty()) return;
 
@@ -229,7 +234,10 @@ public class PanelEvento extends JPanel {
                         break;
                     }
                 }
-                evento.agregarModelo(modelos[indice]);
+                boolean agregado = evento.agregarModelo(modelos[indice]);
+                if (!agregado) {
+                    JOptionPane.showMessageDialog(this, "Ese modelo ya está asignado a este evento.");
+                }
             }
         }
 
@@ -259,7 +267,10 @@ public class PanelEvento extends JPanel {
                         break;
                     }
                 }
-                evento.agregarFotografo(fotografos[indiceF]);
+                boolean agregado = evento.agregarFotografo(fotografos[indiceF]);
+                if (!agregado) {
+                    JOptionPane.showMessageDialog(this, "Ese fotógrafo ya está asignado a este evento.");
+                }
             }
         }
     }

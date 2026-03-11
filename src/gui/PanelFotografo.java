@@ -83,6 +83,11 @@ public class PanelFotografo extends JPanel {
             return;
         }
 
+        if (agencia.existeFotografoIdentificacion(identificacion)) {
+            JOptionPane.showMessageDialog(this, "Ya existe un fotógrafo con esa identificación.");
+            return;
+        }
+
         Fotografo f = new Fotografo(
                 nombre,
                 identificacion,

@@ -87,6 +87,11 @@ public class PanelLugar extends JPanel {
             return;
         }
 
+        if (agencia.existeLugarNombre(nombre)) {
+            JOptionPane.showMessageDialog(this, "Ya existe un lugar con ese nombre.");
+            return;
+        }
+
         Lugar l = new Lugar(
                 nombre,
                 direccion,

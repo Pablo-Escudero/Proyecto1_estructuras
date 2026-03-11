@@ -50,22 +50,30 @@ public abstract class Evento {
         return numFotografos;
     }
 
-    public void agregarModelo(Modelo m) {
-
-        if (numModelos < modelos.length) {
-            modelos[numModelos] = m;
-            numModelos++;
+    public boolean agregarModelo(Modelo m) {
+        if (numModelos >= modelos.length) {
+            return false;
         }
-
+        for (int i = 0; i < numModelos; i++) {
+            if (modelos[i] != null && modelos[i].getCodigoModelo().equals(m.getCodigoModelo())) {
+                return false;
+            }
+        }
+        modelos[numModelos++] = m;
+        return true;
     }
 
-    public void agregarFotografo(Fotografo f) {
-
-        if (numFotografos < fotografos.length) {
-            fotografos[numFotografos] = f;
-            numFotografos++;
+    public boolean agregarFotografo(Fotografo f) {
+        if (numFotografos >= fotografos.length) {
+            return false;
         }
-
+        for (int i = 0; i < numFotografos; i++) {
+            if (fotografos[i] != null && fotografos[i].getIdentificacion().equals(f.getIdentificacion())) {
+                return false;
+            }
+        }
+        fotografos[numFotografos++] = f;
+        return true;
     }
 
     public abstract String mostrarDetalles();

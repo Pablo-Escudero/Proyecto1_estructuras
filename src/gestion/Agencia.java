@@ -17,10 +17,40 @@ public class Agencia {
     private int numLugares = 0;
     private int numEventos = 0;
 
-    public void agregarModelo(Modelo m) {
-        if (numModelos < modelos.length) {
-            modelos[numModelos++] = m;
+    public boolean agregarModelo(Modelo m) {
+        if (numModelos >= modelos.length) {
+            return false;
         }
+        for (int i = 0; i < numModelos; i++) {
+            if (modelos[i] != null) {
+                if (modelos[i].getIdentificacion().equals(m.getIdentificacion())) {
+                    return false;
+                }
+                if (modelos[i].getCodigoModelo().equals(m.getCodigoModelo())) {
+                    return false;
+                }
+            }
+        }
+        modelos[numModelos++] = m;
+        return true;
+    }
+
+    public boolean existeModeloIdentificacion(String identificacion) {
+        for (int i = 0; i < numModelos; i++) {
+            if (modelos[i] != null && modelos[i].getIdentificacion().equals(identificacion)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean existeModeloCodigo(String codigo) {
+        for (int i = 0; i < numModelos; i++) {
+            if (modelos[i] != null && modelos[i].getCodigoModelo().equals(codigo)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public Modelo[] obtenerModelos() {
@@ -31,10 +61,26 @@ public class Agencia {
         return numModelos;
     }
 
-    public void agregarFotografo(Fotografo f) {
-        if (numFotografos < fotografos.length) {
-            fotografos[numFotografos++] = f;
+    public boolean agregarFotografo(Fotografo f) {
+        if (numFotografos >= fotografos.length) {
+            return false;
         }
+        for (int i = 0; i < numFotografos; i++) {
+            if (fotografos[i] != null && fotografos[i].getIdentificacion().equals(f.getIdentificacion())) {
+                return false;
+            }
+        }
+        fotografos[numFotografos++] = f;
+        return true;
+    }
+
+    public boolean existeFotografoIdentificacion(String identificacion) {
+        for (int i = 0; i < numFotografos; i++) {
+            if (fotografos[i] != null && fotografos[i].getIdentificacion().equals(identificacion)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public Fotografo[] obtenerFotografos() {
@@ -45,10 +91,26 @@ public class Agencia {
         return numFotografos;
     }
 
-    public void agregarEvento(Evento e) {
-        if (numEventos < eventos.length) {
-            eventos[numEventos++] = e;
+    public boolean agregarEvento(Evento e) {
+        if (numEventos >= eventos.length) {
+            return false;
         }
+        for (int i = 0; i < numEventos; i++) {
+            if (eventos[i] != null && eventos[i].getNombre().equals(e.getNombre())) {
+                return false;
+            }
+        }
+        eventos[numEventos++] = e;
+        return true;
+    }
+
+    public boolean existeEventoNombre(String nombre) {
+        for (int i = 0; i < numEventos; i++) {
+            if (eventos[i] != null && eventos[i].getNombre().equals(nombre)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void eliminarEvento(int index) {
@@ -69,10 +131,26 @@ public class Agencia {
         return numEventos;
     }
 
-    public void agregarLugar(Lugar l) {
-        if (numLugares < lugares.length) {
-            lugares[numLugares++] = l;
+    public boolean agregarLugar(Lugar l) {
+        if (numLugares >= lugares.length) {
+            return false;
         }
+        for (int i = 0; i < numLugares; i++) {
+            if (lugares[i] != null && lugares[i].getNombre().equals(l.getNombre())) {
+                return false;
+            }
+        }
+        lugares[numLugares++] = l;
+        return true;
+    }
+
+    public boolean existeLugarNombre(String nombre) {
+        for (int i = 0; i < numLugares; i++) {
+            if (lugares[i] != null && lugares[i].getNombre().equals(nombre)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public Lugar[] obtenerLugares() {

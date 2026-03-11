@@ -101,6 +101,16 @@ public class PanelModelo extends JPanel {
             return;
         }
 
+        if (agencia.existeModeloIdentificacion(identificacion)) {
+            JOptionPane.showMessageDialog(this, "Ya existe un modelo con esa identificación.");
+            return;
+        }
+
+        if (agencia.existeModeloCodigo(codigo)) {
+            JOptionPane.showMessageDialog(this, "Ya existe un modelo con ese código.");
+            return;
+        }
+
         Modelo m = new Modelo(
                 nombre,
                 identificacion,
