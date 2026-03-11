@@ -9,7 +9,7 @@ Sistema de gestión para la **Agencia de Modelaje "No Más Enanos Por Favor"**. 
 - **Eventos**: creación y manejo de eventos (públicos y privados).
 - **Lugares**: catálogo de lugares disponibles para eventos.
 
-El sistema cuenta con una interfaz gráfica (Java Swing) organizada en pestañas y guarda la información en archivos de texto (`modelos.txt`, `fotografos.txt`, `eventos.txt`, `lugares.txt`) en la carpeta del proyecto.
+El sistema cuenta con una interfaz gráfica (Java Swing) organizada en pestañas y guarda la información en archivos de texto (`modelos.txt`, `fotografos.txt`, `eventos.txt`, `lugares.txt`) en la carpeta del proyecto
 
 ---
 
