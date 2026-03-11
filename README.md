@@ -1,5 +1,11 @@
 # Proyecto 1 - Estructuras de Datos
 
+Integrantes del equipo:
+- Samuel Tabares
+- Samuel Buelvas
+- Pablo Escudero
+- Isaac Galeano
+
 Este proyecto consiste en el desarrollo de un **sistema de gestión para una agencia de modelaje ficticia llamada "No Más Enanos Por Favor"**.  
 La aplicación fue desarrollada en **Java** utilizando **Java Swing** para la interfaz gráfica y permite administrar la información principal de la agencia de forma sencilla.
 
@@ -138,12 +144,3 @@ Ubicarse en la carpeta raíz del proyecto (por ejemplo `Entrega-1`).
 javac -d out src/gui/VentanaPrincipal.java src/gestion/*.java src/modelos/*.java src/eventos/*.java src/persistencia/*.java src/gui/*.java
 Ejecutar el programa
 java -cp out gui.VentanaPrincipal
-Integrantes del grupo
-
-Samuel Tabares
-
-Samuel Buelvas
-
-Pablo Escudero
-
-Isaac Galeano
