@@ -102,13 +102,8 @@ public class PanelFotografo extends JPanel {
     }
 
     private void cargarFotografosExistentes() {
-        Fotografo[] fotografos = agencia.obtenerFotografos();
-        int cantidad = agencia.getNumFotografos();
-
-        for (int i = 0; i < cantidad; i++) {
-            if (fotografos[i] != null) {
-                area.append(fotografos[i].mostrarInformacion() + "\n");
-            }
+        for (Fotografo fotografo : agencia.obtenerFotografos()) {
+            area.append(fotografo.mostrarInformacion() + "\n");
         }
     }
 }

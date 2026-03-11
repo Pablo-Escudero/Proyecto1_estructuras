@@ -2,6 +2,8 @@ package modelos;
 
 public class Modelo extends Persona {
 
+    private static final long serialVersionUID = 1L;
+
     private String codigoModelo;
     private double estatura;
     private String categoria;
@@ -46,13 +48,4 @@ public class Modelo extends Persona {
                 " | Disponible: " + (disponible ? "Sí" : "No");
     }
 
-    public String toArchivo() {
-        return nombre + "," +
-                identificacion + "," +
-                contacto + "," +
-                codigoModelo + "," +
-                estatura + "," +
-                categoria + "," +
-                disponible;
-    }
 }

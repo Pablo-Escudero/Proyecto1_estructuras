@@ -5,39 +5,31 @@ import modelos.Fotografo;
 import eventos.Evento;
 import persistencia.*;
 
+import java.util.ArrayList;
+
 public class Agencia {
 
-    private Modelo[] modelos = new Modelo[100];
-    private Fotografo[] fotografos = new Fotografo[50];
-    private Lugar[] lugares = new Lugar[20];
-    private Evento[] eventos = new Evento[100];
-
-    private int numModelos = 0;
-    private int numFotografos = 0;
-    private int numLugares = 0;
-    private int numEventos = 0;
+    private ArrayList<Modelo> modelos = new ArrayList<>();
+    private ArrayList<Fotografo> fotografos = new ArrayList<>();
+    private ArrayList<Lugar> lugares = new ArrayList<>();
+    private ArrayList<Evento> eventos = new ArrayList<>();
 
     public boolean agregarModelo(Modelo m) {
-        if (numModelos >= modelos.length) {
-            return false;
-        }
-        for (int i = 0; i < numModelos; i++) {
-            if (modelos[i] != null) {
-                if (modelos[i].getIdentificacion().equals(m.getIdentificacion())) {
-                    return false;
-                }
-                if (modelos[i].getCodigoModelo().equals(m.getCodigoModelo())) {
-                    return false;
-                }
+        for (Modelo modelo : modelos) {
+            if (modelo.getIdentificacion().equals(m.getIdentificacion())) {
+                return false;
+            }
+            if (modelo.getCodigoModelo().equals(m.getCodigoModelo())) {
+                return false;
             }
         }
-        modelos[numModelos++] = m;
+        modelos.add(m);
         return true;
     }
 
     public boolean existeModeloIdentificacion(String identificacion) {
-        for (int i = 0; i < numModelos; i++) {
-            if (modelos[i] != null && modelos[i].getIdentificacion().equals(identificacion)) {
+        for (Modelo modelo : modelos) {
+            if (modelo.getIdentificacion().equals(identificacion)) {
                 return true;
             }
         }
@@ -45,68 +37,62 @@ public class Agencia {
     }
 
     public boolean existeModeloCodigo(String codigo) {
-        for (int i = 0; i < numModelos; i++) {
-            if (modelos[i] != null && modelos[i].getCodigoModelo().equals(codigo)) {
+        for (Modelo modelo : modelos) {
+            if (modelo.getCodigoModelo().equals(codigo)) {
                 return true;
             }
         }
         return false;
     }
 
-    public Modelo[] obtenerModelos() {
+    public ArrayList<Modelo> obtenerModelos() {
         return modelos;
     }
 
     public int getNumModelos() {
-        return numModelos;
+        return modelos.size();
     }
 
     public boolean agregarFotografo(Fotografo f) {
-        if (numFotografos >= fotografos.length) {
-            return false;
-        }
-        for (int i = 0; i < numFotografos; i++) {
-            if (fotografos[i] != null && fotografos[i].getIdentificacion().equals(f.getIdentificacion())) {
+        for (Fotografo fotografo : fotografos) {
+            if (fotografo.getIdentificacion().equals(f.getIdentificacion())) {
                 return false;
             }
         }
-        fotografos[numFotografos++] = f;
+        fotografos.add(f);
         return true;
     }
 
     public boolean existeFotografoIdentificacion(String identificacion) {
-        for (int i = 0; i < numFotografos; i++) {
-            if (fotografos[i] != null && fotografos[i].getIdentificacion().equals(identificacion)) {
+        for (Fotografo fotografo : fotografos) {
+            if (fotografo.getIdentificacion().equals(identificacion)) {
                 return true;
             }
         }
         return false;
     }
 
-    public Fotografo[] obtenerFotografos() {
+    public ArrayList<Fotografo> obtenerFotografos() {
         return fotografos;
     }
 
     public int getNumFotografos() {
-        return numFotografos;
+        return fotografos.size();
     }
 
     public boolean agregarEvento(Evento e) {
-        if (numEventos >= eventos.length) {
-            return false;
-        }
-        for (int i = 0; i < numEventos; i++) {
-            if (eventos[i] != null && eventos[i].getNombre().equals(e.getNombre())) {
+        for (Evento evento : eventos) {
+            if (evento.getNombre().equals(e.getNombre())) {
                 return false;
             }
         }
-        eventos[numEventos++] = e;
+        eventos.add(e);
         return true;
     }
 
     public boolean existeEventoNombre(String nombre) {
-        for (int i = 0; i < numEventos; i++) {
-            if (eventos[i] != null && eventos[i].getNombre().equals(nombre)) {
+        for (Evento evento : eventos) {
+            if (evento.getNombre().equals(nombre)) {
                 return true;
             }
         }
@@ -114,96 +100,92 @@ public class Agencia {
     }
 
     public void eliminarEvento(int index) {
-        if (index >= 0 && index < numEventos) {
-            for (int i = index; i < numEventos - 1; i++) {
-                eventos[i] = eventos[i + 1];
-            }
-            eventos[numEventos - 1] = null;
-            numEventos--;
+        if (index >= 0 && index < eventos.size()) {
+            eventos.remove(index);
         }
     }
 
-    public Evento[] getEventos() {
+    public ArrayList<Evento> getEventos() {
         return eventos;
     }
 
     public int getNumEventos() {
-        return numEventos;
+        return eventos.size();
     }
 
     public boolean agregarLugar(Lugar l) {
-        if (numLugares >= lugares.length) {
-            return false;
-        }
-        for (int i = 0; i < numLugares; i++) {
-            if (lugares[i] != null && lugares[i].getNombre().equals(l.getNombre())) {
+        for (Lugar lugar : lugares) {
+            if (lugar.getNombre().equals(l.getNombre())) {
                 return false;
             }
         }
-        lugares[numLugares++] = l;
+        lugares.add(l);
         return true;
     }
 
     public boolean existeLugarNombre(String nombre) {
-        for (int i = 0; i < numLugares; i++) {
-            if (lugares[i] != null && lugares[i].getNombre().equals(nombre)) {
+        for (Lugar lugar : lugares) {
+            if (lugar.getNombre().equals(nombre)) {
                 return true;
             }
         }
         return false;
     }
 
-    public Lugar[] obtenerLugares() {
+    public ArrayList<Lugar> obtenerLugares() {
         return lugares;
     }
 
     public int getNumLugares() {
-        return numLugares;
+        return lugares.size();
     }
 
     public Lugar buscarLugarPorNombre(String nombre) {
-        for (int i = 0; i < numLugares; i++) {
-            if (lugares[i] != null && lugares[i].getNombre().equals(nombre)) {
-                return lugares[i];
+        for (Lugar lugar : lugares) {
+            if (lugar.getNombre().equals(nombre)) {
+                return lugar;
             }
         }
         return null;
     }
 
     public Modelo buscarModeloPorCodigo(String codigoModelo) {
-        for (int i = 0; i < numModelos; i++) {
-            if (modelos[i] != null && modelos[i].getCodigoModelo().equals(codigoModelo)) {
-                return modelos[i];
+        for (Modelo modelo : modelos) {
+            if (modelo.getCodigoModelo().equals(codigoModelo)) {
+                return modelo;
             }
         }
         return null;
     }
 
     public Fotografo buscarFotografoPorIdentificacion(String identificacion) {
-        for (int i = 0; i < numFotografos; i++) {
-            if (fotografos[i] != null && fotografos[i].getIdentificacion().equals(identificacion)) {
-                return fotografos[i];
+        for (Fotografo fotografo : fotografos) {
+            if (fotografo.getIdentificacion().equals(identificacion)) {
+                return fotografo;
             }
         }
         return null;
     }
 
     public void guardarDatos() {
-
-        ArchivoModelos.guardar(modelos, numModelos);
-        ArchivoFotografos.guardar(fotografos, numFotografos);
-        ArchivoEventos.guardar(eventos, numEventos);
-        ArchivoLugares.guardar(lugares, numLugares);
-
+        ArchivoModelos.guardar(modelos);
+        ArchivoFotografos.guardar(fotografos);
+        ArchivoEventos.guardar(eventos);
+        ArchivoLugares.guardar(lugares);
     }
 
+    @SuppressWarnings("unchecked")
     public void cargarDatos() {
+        ArrayList<Modelo> modelosCargados = (ArrayList<Modelo>) ArchivoModelos.cargar();
+        if (modelosCargados != null) modelos = modelosCargados;
 
-        ArchivoModelos.cargar(this);
-        ArchivoFotografos.cargar(this);
-        ArchivoLugares.cargar(this);
-        ArchivoEventos.cargar(this);
+        ArrayList<Fotografo> fotografosCargados = (ArrayList<Fotografo>) ArchivoFotografos.cargar();
+        if (fotografosCargados != null) fotografos = fotografosCargados;
 
+        ArrayList<Lugar> lugaresCargados = (ArrayList<Lugar>) ArchivoLugares.cargar();
+        if (lugaresCargados != null) lugares = lugaresCargados;
+
+        ArrayList<Evento> eventosCargados = (ArrayList<Evento>) ArchivoEventos.cargar();
+        if (eventosCargados != null) eventos = eventosCargados;
     }
-
 }

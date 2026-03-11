@@ -1,6 +1,10 @@
 package gestion;
 
-public class Lugar {
+import java.io.Serializable;
+
+public class Lugar implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private String nombreLugar;
     private String direccion;
@@ -42,10 +46,6 @@ public class Lugar {
         return nombreLugar + " - " + ciudad + " (" + tipoLugar + ")";
     }
 
-    public String toArchivo() {
-        return nombreLugar + "," + direccion + "," +
-                ciudad + "," + capacidad + "," + tipoLugar;
-    }
 
     @Override
     public String toString() {

@@ -4,17 +4,19 @@ import gestion.Lugar;
 import modelos.Modelo;
 import modelos.Fotografo;
 
-public abstract class Evento {
+import java.io.Serializable;
+import java.util.ArrayList;
+
+public abstract class Evento implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     protected String nombreEvento;
     protected String fecha;
     protected Lugar lugar;
 
-    protected Modelo[] modelos = new Modelo[20];
-    protected Fotografo[] fotografos = new Fotografo[10];
-
-    protected int numModelos = 0;
-    protected int numFotografos = 0;
+    protected ArrayList<Modelo> modelos = new ArrayList<>();
+    protected ArrayList<Fotografo> fotografos = new ArrayList<>();
 
     public Evento(String nombreEvento, String fecha, Lugar lugar) {
         this.nombreEvento = nombreEvento;
@@ -34,45 +36,39 @@ public abstract class Evento {
         return lugar;
     }
 
-    public Modelo[] getModelos() {
+    public ArrayList<Modelo> getModelos() {
         return modelos;
     }
 
     public int getNumModelos() {
-        return numModelos;
+        return modelos.size();
     }
 
-    public Fotografo[] getFotografos() {
+    public ArrayList<Fotografo> getFotografos() {
         return fotografos;
     }
 
     public int getNumFotografos() {
-        return numFotografos;
+        return fotografos.size();
     }
 
     public boolean agregarModelo(Modelo m) {
-        if (numModelos >= modelos.length) {
-            return false;
-        }
-        for (int i = 0; i < numModelos; i++) {
-            if (modelos[i] != null && modelos[i].getCodigoModelo().equals(m.getCodigoModelo())) {
+        for (Modelo modelo : modelos) {
+            if (modelo.getCodigoModelo().equals(m.getCodigoModelo())) {
                 return false;
             }
         }
-        modelos[numModelos++] = m;
+        modelos.add(m);
         return true;
     }
 
     public boolean agregarFotografo(Fotografo f) {
-        if (numFotografos >= fotografos.length) {
-            return false;
-        }
-        for (int i = 0; i < numFotografos; i++) {
-            if (fotografos[i] != null && fotografos[i].getIdentificacion().equals(f.getIdentificacion())) {
+        for (Fotografo fotografo : fotografos) {
+            if (fotografo.getIdentificacion().equals(f.getIdentificacion())) {
                 return false;
             }
         }
-        fotografos[numFotografos++] = f;
+        fotografos.add(f);
         return true;
     }
 

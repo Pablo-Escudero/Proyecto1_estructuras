@@ -1,1 +1,4 @@
 Julian,12341231,3225476891,uep13213,2.0,masculino,true
+Samuel tabares,10179289777,13124479194147,1e1441423,1.65,xdddd,true
+Sebastian Zapata,uep13213,322986512,54996,1.61,Masculino,true
+samuel,uep13212,173684709,54991,1.6,Masculino,true

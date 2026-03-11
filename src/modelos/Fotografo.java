@@ -2,6 +2,8 @@ package modelos;
 
 public class Fotografo extends Persona {
 
+    private static final long serialVersionUID = 1L;
+
     private String especialidad;
     private int anosExperiencia;
 
@@ -27,11 +29,4 @@ public class Fotografo extends Persona {
                 " | Experiencia: " + anosExperiencia;
     }
 
-    public String toArchivo() {
-        return nombre + "," +
-                identificacion + "," +
-                contacto + "," +
-                especialidad + "," +
-                anosExperiencia;
-    }
 }

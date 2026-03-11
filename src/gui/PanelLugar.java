@@ -107,13 +107,8 @@ public class PanelLugar extends JPanel {
     }
 
     private void cargarLugaresExistentes() {
-        Lugar[] lugares = agencia.obtenerLugares();
-        int cantidad = agencia.getNumLugares();
-
-        for (int i = 0; i < cantidad; i++) {
-            if (lugares[i] != null) {
-                area.append(lugares[i].mostrarLugar() + "\n");
-            }
+        for (Lugar lugar : agencia.obtenerLugares()) {
+            area.append(lugar.mostrarLugar() + "\n");
         }
     }
 }

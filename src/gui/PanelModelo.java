@@ -127,13 +127,8 @@ public class PanelModelo extends JPanel {
     }
 
     private void cargarModelosExistentes() {
-        Modelo[] modelos = agencia.obtenerModelos();
-        int cantidad = agencia.getNumModelos();
-
-        for (int i = 0; i < cantidad; i++) {
-            if (modelos[i] != null) {
-                area.append(modelos[i].mostrarInformacion() + "\n");
-            }
+        for (Modelo modelo : agencia.obtenerModelos()) {
+            area.append(modelo.mostrarInformacion() + "\n");
         }
     }
 }

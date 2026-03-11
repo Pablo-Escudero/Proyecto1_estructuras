@@ -4,6 +4,8 @@ import gestion.Lugar;
 
 public class EventoPrivado extends Evento {
 
+    private static final long serialVersionUID = 1L;
+
     private String cliente;
     private String nivelConfidencialidad;
 

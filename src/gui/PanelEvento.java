@@ -12,6 +12,7 @@ import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class PanelEvento extends JPanel {
 
@@ -81,16 +82,15 @@ public class PanelEvento extends JPanel {
         String fecha = JOptionPane.showInputDialog(this, "Fecha del evento:");
         if (fecha == null || fecha.isEmpty()) return;
 
-        Lugar[] lugares = agencia.obtenerLugares();
-        int numLugares = agencia.getNumLugares();
-        if (numLugares == 0) {
+        ArrayList<Lugar> lugares = agencia.obtenerLugares();
+        if (lugares.isEmpty()) {
             JOptionPane.showMessageDialog(this, "No hay lugares registrados. Registre un lugar primero.");
             return;
         }
 
-        String[] nombresLugares = new String[numLugares];
-        for (int i = 0; i < numLugares; i++) {
-            nombresLugares[i] = lugares[i].getNombre();
+        String[] nombresLugares = new String[lugares.size()];
+        for (int i = 0; i < lugares.size(); i++) {
+            nombresLugares[i] = lugares.get(i).getNombre();
         }
 
         String nombreLugar = (String) JOptionPane.showInputDialog(
@@ -183,18 +183,12 @@ public class PanelEvento extends JPanel {
 
         modeloTabla.setRowCount(0);
 
-        Evento[] eventos = agencia.getEventos();
-        int numEventos = agencia.getNumEventos();
-
-        for (int i = 0; i < numEventos; i++) {
-            Evento e = eventos[i];
-            if (e != null) {
-                modeloTabla.addRow(new Object[]{
-                        e.getNombre(),
-                        e.getFecha(),
-                        e.getLugar().getNombre()
-                });
-            }
+        for (Evento e : agencia.getEventos()) {
+            modeloTabla.addRow(new Object[]{
+                    e.getNombre(),
+                    e.getFecha(),
+                    e.getLugar().getNombre()
+            });
         }
     }
 
@@ -205,15 +199,13 @@ public class PanelEvento extends JPanel {
             return;
         }
 
-        Evento evento = agencia.getEventos()[fila];
-        if (evento == null) return;
+        Evento evento = agencia.getEventos().get(fila);
 
-        Modelo[] modelos = agencia.obtenerModelos();
-        int numModelos = agencia.getNumModelos();
-        if (numModelos > 0) {
-            String[] nombresModelos = new String[numModelos];
-            for (int i = 0; i < numModelos; i++) {
-                nombresModelos[i] = modelos[i].getNombre() + " (" + modelos[i].getCodigoModelo() + ")";
+        ArrayList<Modelo> modelos = agencia.obtenerModelos();
+        if (!modelos.isEmpty()) {
+            String[] nombresModelos = new String[modelos.size()];
+            for (int i = 0; i < modelos.size(); i++) {
+                nombresModelos[i] = modelos.get(i).getNombre() + " (" + modelos.get(i).getCodigoModelo() + ")";
             }
 
             String seleccionado = (String) JOptionPane.showInputDialog(
@@ -228,25 +220,24 @@ public class PanelEvento extends JPanel {
 
             if (seleccionado != null) {
                 int indice = 0;
-                for (int i = 0; i < numModelos; i++) {
+                for (int i = 0; i < nombresModelos.length; i++) {
                     if (nombresModelos[i].equals(seleccionado)) {
                         indice = i;
                         break;
                     }
                 }
-                boolean agregado = evento.agregarModelo(modelos[indice]);
+                boolean agregado = evento.agregarModelo(modelos.get(indice));
                 if (!agregado) {
                     JOptionPane.showMessageDialog(this, "Ese modelo ya está asignado a este evento.");
                 }
             }
         }
 
-        Fotografo[] fotografos = agencia.obtenerFotografos();
-        int numFotografos = agencia.getNumFotografos();
-        if (numFotografos > 0) {
-            String[] nombresFotografos = new String[numFotografos];
-            for (int i = 0; i < numFotografos; i++) {
-                nombresFotografos[i] = fotografos[i].getNombre();
+        ArrayList<Fotografo> fotografos = agencia.obtenerFotografos();
+        if (!fotografos.isEmpty()) {
+            String[] nombresFotografos = new String[fotografos.size()];
+            for (int i = 0; i < fotografos.size(); i++) {
+                nombresFotografos[i] = fotografos.get(i).getNombre();
             }
 
             String seleccionadoF = (String) JOptionPane.showInputDialog(
@@ -261,13 +252,13 @@ public class PanelEvento extends JPanel {
 
             if (seleccionadoF != null) {
                 int indiceF = 0;
-                for (int i = 0; i < numFotografos; i++) {
+                for (int i = 0; i < nombresFotografos.length; i++) {
                     if (nombresFotografos[i].equals(seleccionadoF)) {
                         indiceF = i;
                         break;
                     }
                 }
-                boolean agregado = evento.agregarFotografo(fotografos[indiceF]);
+                boolean agregado = evento.agregarFotografo(fotografos.get(indiceF));
                 if (!agregado) {
                     JOptionPane.showMessageDialog(this, "Ese fotógrafo ya está asignado a este evento.");
                 }
@@ -282,8 +273,7 @@ public class PanelEvento extends JPanel {
             return;
         }
 
-        Evento evento = agencia.getEventos()[fila];
-        if (evento == null) return;
+        Evento evento = agencia.getEventos().get(fila);
 
         StringBuilder sb = new StringBuilder();
         sb.append(evento.mostrarDetalles()).append("\n");

@@ -4,6 +4,8 @@ import gestion.Lugar;
 
 public class EventoPublico extends Evento {
 
+    private static final long serialVersionUID = 1L;
+
     private int capacidadAsistentes;
     private String patrocinador;
 
